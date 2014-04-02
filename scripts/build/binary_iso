@@ -86,7 +86,7 @@ then
 fi
 
 # Handle xorriso generic options
-XORRISO_OPTIONS="-r -J -joliet-long -l -cache-inodes"
+XORRISO_OPTIONS="-r -J -joliet-long -l -cache-inodes -iso-level 3"
 
 # Handle xorriso live-build specific options
 case "${LB_PARENT_DISTRIBUTION}" in
