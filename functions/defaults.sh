@@ -893,6 +893,9 @@ Set_defaults ()
 		esac
 	fi
 
+	# Setting efi boot
+	LB_EFI_BOOT="${LB_EFI_BOOT:-false}"
+
 	# Setting checksums
 	case "${LB_MODE}" in
 		progress-linux)
