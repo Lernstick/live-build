@@ -144,6 +144,30 @@ case "${LB_BOOTLOADER}" in
 		;;
 esac
 
+if [ "${LB_EFI_BOOT}" = "true" ]
+then
+	XORRISO_VER=$(xorriso --version 2>&1 | awk '
+			/^xorriso version/ {
+				split($4, ver, ".")
+				print ver[1]*10000+ver[2]*100+ver[3]
+			}')
+	# Ugh - different code here depending on the version of xorriso we've got
+	if [ $XORRISO_VER -le 10202 ] ; then
+		# 1.2.2 shipping in Wheezy
+		# Tell xorriso to create a secondary ElTorito boot record for the
+		# EFI bootloader
+		XORRISO_OPTIONS="${XORRISO_OPTIONS} -eltorito-alt-boot --efi-boot efi.img"
+		# Add the efi image as a FAT partition too, so our CD image will
+		# also boot on a USB key (like isohybrid, just implemented
+		# differently)
+		XORRISO_OPTIONS="${XORRISO_OPTIONS} -append_partition 2 0x01 binary/efi.img"
+
+	elif [ $XORRISO_VER -gt 10202 ] ; then
+		XORRISO_OPTIONS="${XORRISO_OPTIONS} -eltorito-alt-boot -e efi.img -no-emul-boot"
+		XORRISO_OPTIONS="${XORRISO_OPTIONS} -isohybrid-gpt-basdat -isohybrid-apm-hfsplus"
+	fi
+fi
+
 #if [ "${LB_DEBIAN_INSTALLER}" != "live" ]
 #then
 #	XORRISO_OPTIONS="${XORRISO_OPTIONS} -m ${XORRISO_EXCLUDE}"
@@ -179,6 +203,34 @@ EOF
 
 else
 	echo "#!/bin/sh" > binary.sh
+fi
+
+if [ "${LB_EFI_BOOT}" = "true" ]
+then
+# The code below is adapted from tools/boot/jessie/boot-x86
+# in debian-cd
+
+# Stuff the EFI boot files into a FAT filesystem, making it as
+# small as possible.  24KiB headroom seems to be enough;
+# (x+31)/32*32 rounds up to multiple of 32.
+
+cat >> binary.sh << EOF
+
+efi_img="binary/efi.img"
+
+size=0
+for file in binary/efi/boot/*; do
+	size=\$((\$size + \$(stat -c %s "\$file")))
+done
+
+blocks=\$(((\$size / 1024 + 55) / 32 * 32 ))
+
+mkfs.msdos -C "\$efi_img" \$blocks >/dev/null
+mmd -i "\$efi_img" ::efi
+mmd -i "\$efi_img" ::efi/boot
+mcopy -i "\$efi_img" binary/efi/boot/* "::efi/boot"
+
+EOF
 fi
 
 cat >> binary.sh << EOF
