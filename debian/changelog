@@ -1,3 +1,20 @@
+live-build (3.0.5-1+lernstick1) lernstick; urgency=medium
+
+  [ Daniel Baumann ]
+  * [001e] Updating versioning scheme references to match new scheme since wheezy.
+  * [219a] Updating cgi templates for current bootstrap version 3.0.0 based theme on live-systems.org.
+
+  [ Richard Nelson ]
+  * [8ef8] Modify l-b-cgi frontend logging paths.
+  * [6fdc] Modified l-b-cgi cron to move submitted build file to temporary build directory after reading.
+  * [3171] Initial commit on l-b-cgi frontend to support multiple instances of image building.
+
+  [ Gaudenz Steinlin ]
+  * [3fd2] Create ISO Level 3 images
+  * [432b] Option to include an EFI image into ISO images
+
+ -- Gaudenz Steinlin <gaudenz@debian.org>  Wed, 30 Apr 2014 11:46:57 +0200
+
 live-build (3.0.5-1) unstable; urgency=low
 
   * Skipping loadlin inclusion on netboot images.
