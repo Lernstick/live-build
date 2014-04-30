@@ -41,6 +41,8 @@
 .br
 	[\fB\-\-bootloader\fR grub|grub2|syslinux]
 .br
+	[\fB\-\-efi\-boot\fR true|false]
+.br
 	[\fB\-\-cache\fR true|false]
 .br
 	[\fB\-\-cache\-indices\fR true|false]
@@ -265,6 +267,8 @@ sets boot parameters specific to debian\-installer, if included.
 sets boot parameters specific to debian\-live. A complete list of boot parameters can be found in the \fIlive\-boot\fR(7) and \fIlive\-config\fR(7) manual pages.
 .IP "\fB\-\-bootloader\fR grub|grub2|syslinux" 4
 defines which bootloader is being used in the generated image. This has only an effect if the selected binary image type does allow to choose the bootloader. For example, if you build a iso, always syslinux (or more precise, isolinux) is being used. Also note that some combinations of binary images types and bootloaders may be possible but live\-build does not support them yet. \fBlb config\fR will fail to create such a not yet supported configuration and give a explanation about it. For hdd images on amd64 and i386, the default is syslinux.
+.IP "\fB\-\-efi\-boot\fR true|false" 4
+control if an EFI boot image should be included as an alternate El Torrito image. This is necessary for booting an ISO image under EFI on most implementations. Booting the ISO image also works from USB devices when writeing the image directly to the device. The EFI boot files must be present in binary/efi/boot already. Use a binary hook or include to copy the files to this directory.
 .IP "\fB\-\-cache\fR true|false" 4
 defines globally if any cache should be used at all. Different caches can be controlled through the their own options.
 .IP "\fB\-\-cache\-indices\fR true|false" 4
