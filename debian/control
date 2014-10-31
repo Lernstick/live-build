@@ -11,14 +11,14 @@ Vcs-Git: git://live.debian.net/git/live-build.git
 
 Package: live-build
 Architecture: all
-Depends: ${misc:Depends}, debootstrap | cdebootstrap | cdebootstrap-static
+Depends: ${misc:Depends}, debootstrap | cdebootstrap | cdebootstrap-static, uuid-runtime
 Recommends:
  live-boot-doc, live-config-doc, live-manual-html | live-manual, cpio,
  gnu-fdisk
 Suggests:
  dosfstools, debian-keyring, xorriso, git, gpgv, loadlin, memtest86+ | memtest86,
  mtools, parted, squashfs-tools | mtd-tools, sudo | fakeroot, syslinux | grub,
- uuid-runtime, win32-loader
+ win32-loader
 Description: Live System Build Scripts
  live-build contains the scripts to build a live system from a configuration
  directory.

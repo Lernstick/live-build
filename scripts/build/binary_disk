@@ -117,6 +117,10 @@ case "${LB_INITRAMFS}" in
 			rm -rf binary/uuid
 		done
 		;;
+	live-boot)
+		# copy over UUID from chroot
+		cp chroot/etc/live/uuid.conf binary/.disk/live-uuid
+		;;
 esac
 
 case "${LB_DEBIAN_INSTALLER}" in
