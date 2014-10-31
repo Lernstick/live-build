@@ -1,3 +1,9 @@
+live-build (3.0.5-1+lernstick2) lernstick; urgency=medium
+
+  * [bd3b] Create build UUID
+
+ -- Gaudenz Steinlin <gaudenz@debian.org>  Fri, 31 Oct 2014 09:04:02 +0100
+
 live-build (3.0.5-1+lernstick1) lernstick; urgency=medium
 
   [ Daniel Baumann ]
