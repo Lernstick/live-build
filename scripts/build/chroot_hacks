@@ -70,7 +70,8 @@ case "${LB_INITRAMFS}" in
 		;;
 
 	live-boot)
-		#UPDATE_INITRAMFS_OPTIONS="LIVE_GENERATE_UUID=1"
+		# generate UUID and store it in the image
+		uuidgen -r > chroot/etc/live/uuid.conf
 		;;
 esac
 
