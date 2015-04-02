@@ -1,3 +1,10 @@
+live-build (5.0~a3-1+lernstick1) lernstick-8; urgency=medium
+
+  * [10f3] Option to include an EFI image into ISO images
+  * [998e] Create build UUID
+
+ -- Gaudenz Steinlin <gaudenz@debian.org>  Thu, 02 Apr 2015 11:08:59 +0200
+
 live-build (5.0~a3-1) experimental; urgency=low
 
   [ Daniel Baumann ]
