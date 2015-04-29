@@ -1,3 +1,10 @@
+live-build (5.0~a5-1+lernstick1) lernstick-8; urgency=medium
+
+  * [c048] Option to include an EFI image into ISO images
+  * [9f45] Create build UUID
+
+ -- Gaudenz Steinlin <gaudenz@debian.org>  Wed, 29 Apr 2015 15:31:51 +0200
+
 live-build (5.0~a5-1) unstable; urgency=low
 
   * Removing temporary hack to exclude prism2-usb-firmware-installer, the
