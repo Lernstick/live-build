@@ -14,7 +14,8 @@ Architecture: all
 Depends:
  ${misc:Depends},
  debootstrap,
- uuid-runtime
+ uuid-runtime,
+ xorriso
 Recommends:
  apt-utils,
  cpio,
